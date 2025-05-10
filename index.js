@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB Connection
-mongoose.connect("mongodb+srv://abhinav:abhinav@cluster0.pdhmv7o.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0" || "mongodb://localhost:27017/freepik-api", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/freepik-api", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -26,20 +26,18 @@ const apiKeySchema = new mongoose.Schema({
 
 const ApiKey = mongoose.model("ApiKey", apiKeySchema);
 
-
+// Load API keys from environment variables
 const Api_keys = [
-"FPSX79cdf01c7e744207beae0ad0c4fee600",
-"FPSX6a436ebe79d94d24bdc9d5115c68b40a",
-"FPSXa767f3ad58ca4808b4d485117e4eb982",
-"FPSXe23c7b576b804161985ad9fe2f2e9bf1",
-"FPSX9caef57f2d5e493598d05bc9eb90ca59"
+  process.env.API_KEY_1,
+  process.env.API_KEY_2,
+  process.env.API_KEY_3,
+  process.env.API_KEY_4,
+  process.env.API_KEY_5
+].filter(Boolean); // Filter out any undefined keys
 
-]
+const DEFAULT_API_KEY = process.env.DEFAULT_API_KEY;
 
-
-const DEFAULT_API_KEY = "FPSX79cdf01c7e744207beae0ad0c4fee600";
-
-
+// API endpoint to store a new API key
 app.post("/api-keys", async (req, res) => {
   try {
     const { key, name } = req.body;
