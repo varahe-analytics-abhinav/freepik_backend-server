@@ -1,18 +1,18 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
+const { handleImageGeneration } = require("../controllers/imageController");
+const { handleCreditsCheck } = require("../controllers/creditsController");
+const Api_keys = require("../config/keys");
 
-// Import your controller functions from their respective files
-const { handleImageGeneration } = require('../controllers/imageController');
-const { handleCreditsCheck } = require('../controllers/creditsController');
+router.get("/api-keys", (req, res) => {
+  try {
+    res.json({ count: Api_keys.length });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch API keys count" });
+  }
+});
 
-// Define the route for generating an image.
-// This tells the server what to do when it receives a POST request
-// to the "/generate-image" URL.
-router.post('/generate-image', handleImageGeneration);
+router.post("/classic-fast", handleImageGeneration);
+router.get("/check-credits", handleCreditsCheck);
 
-// Define the route for checking API credits.
-// This handles GET requests to the "/check-credits" URL.
-router.get('/check-credits', handleCreditsCheck);
-
-// Export the router so it can be used by your main server.js file
 module.exports = router;

@@ -1,7 +1,7 @@
 const fetch = require("node-fetch");
 
 async function generateImage(apiKey, requestBody) {
-  const response = await fetch("https://api.freepik.com/v1/ai/text-to-image/imagen3", {
+  const response = await fetch("https://api.freepik.com/v1/ai/text-to-image", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
