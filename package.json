@@ -5,5 +5,27 @@
     "express": "^4.21.2",
     "mongoose": "^8.14.1",
     "node-fetch": "^2.7.0"
-  }
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "name": "freepik_backend-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/varahe-analytics-abhinav/freepik_backend-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/varahe-analytics-abhinav/freepik_backend-server/issues"
+  },
+  "homepage": "https://github.com/varahe-analytics-abhinav/freepik_backend-server#readme",
+  "description": ""
 }
